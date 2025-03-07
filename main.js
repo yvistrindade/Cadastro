@@ -79,11 +79,11 @@ app.commandLine.appendSwitch('log-level', '3')
 // template do menu
 const template = [
   {
-    label: 'Notas',
+    label: 'Cadastro',
     submenu: [
       {
         label: 'Criar nota',
-        accelerator: 'Ctrl+N',
+        accelerator: 'Ctrl+N'
       },
       {
         type: 'separator',
@@ -93,6 +93,17 @@ const template = [
         accelerator: 'Alt+F4',
         click: () => app.quit()
       }
+    ]
+  },
+  {
+    label: 'Relatorios',
+    submenu: [
+      {
+        label: 'Clientes'
+      },
+      {
+        type: 'separator',
+      },
     ]
   },
   {
