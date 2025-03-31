@@ -128,3 +128,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+<!-- Bootstrap -->
+<script src="../public/js/bootstrap.min.js"></script>
+
+<!-- Processo de renderização -->
+<script src="renderer.js"></script>
+
+<script src="script.js"></script>
+</body>
