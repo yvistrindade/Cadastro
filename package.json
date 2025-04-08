@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/clxsilva/cadastro.git"
+    "url": "git+https://github.com/yvistrindade/cadastro.git"
   },
   "author": "Claudio Silva",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/clxsilva/cadastro/issues"
+    "url": "https://github.com/yvistrindade/cadastro/issues"
   },
-  "homepage": "https://github.com/clxsilva/cadastro#readme",
+  "homepage": "https://github.com/yvistrindade/cadastro#readme",
   "devDependencies": {
     "electron": "^35.0.0"
   },
