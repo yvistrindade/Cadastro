@@ -50,3 +50,5 @@ const desconectar = async () => {
 
 // exportar para o main os métodos conectar e desconectar
 module.exports = { conectar, desconectar }
+
+// exportar para o main os métodos conectar e desconectar
