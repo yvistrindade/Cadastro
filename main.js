@@ -341,3 +341,29 @@ doc.text(`Pagina ${1} de ${pages}`, 105,290, { align:'center'})
 }
 // == Fim - relatório de clientes =============================
 
+//=============================================================
+// == CRUD READ ===============================================
+
+ipcMain.on('search-name', async (event, cliName) => {
+    // teste de recebeminto do nome pd clients (passo 2)
+    console.log(cliName)
+    try {
+        // passos 3 e 4 é a (busca dos dados do cliente pelo nome)
+        //regExp (expressao regular 'i' -> insentive (ignorar letras maiuscula e minusculas))
+const client  = await clientModel.find({
+    nomeCliente: new RegExp(cliName,'i')
+})
+//teste de busca do cliente pelo nome (passo 3 e 4)
+console.log(client)
+// enviar ao renderizador (renderercliente) os dados do cliente (passo 5) OBS: nao esquecer de converter para string "JSON.stringify"
+event.reply('render-client', JSON.stringify(client))
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+// == FIM - CRU read ==========================================
+//=============================================================
+
+

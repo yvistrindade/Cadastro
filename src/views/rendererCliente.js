@@ -17,6 +17,9 @@ function buscarCEP() {
 // Capturar o foco na busca pelo nome do cliente
 const foco = document.getElementById('searchClient');
 
+// criar um vetor global para extrair os dados do cliente 
+let arrayClient = []
+
 document.addEventListener('DOMContentLoaded', () => {
     btnUpdate.disabled = true;
     btnDelete.disabled = true;
@@ -98,6 +101,43 @@ frmClient.addEventListener('submit', async (event) => {
 // ============================================================
 
 // ============================================================
+// == CRUD Read ===============================================
+ 
+function searchC() {
+    // console.log("teste do botão buscar")
+    // Capturar o nome a ser pesquisado (Passo 1)
+    let cliName = document.getElementById('searchClient').value
+    console.log(cliName) // Teste do passo 1
+    //enviar o nome do cliente ao main passo 2
+    api.searchName(cliName)
+    //receber os dados do cliente (passo 5)
+    api.renderClient((event,client) => {
+        // teste de recebimento de dados do cliente 
+        console.log(client)
+        // passo 6 rederização de dados do cliente (preencher os inputs dp form) - nao esquecer de converter os dados do string para JSON
+        const clientData = JSON.parse(client)
+        arrayClient = clientData
+        // uso do forEach para percorrer o vetor e extrair os dados
+        arrayClient.forEach((c) => {
+            nameClient.value = c.nomeCliente
+            cpfClient.value = c.cpfCliente
+            emailClient.value = c.emailCliente
+            phoneClient.value = c.foneCliente
+            cepClient.value = c.cepCliente
+            addressClient.value = c.logradouroCliente
+            numberClient.value = c.numeroCliente
+            complementClient.value = c.complementoCliente
+            neighborhoodClient.value = c.bairroCliente
+            cityClient.value = c.cidadeCliente
+            ufClient.value = c.ufCliente
+        })
+    })
+ }
+  
+ // == Fim - CRUD Read =========================================
+ // ============================================================
+
+// ============================================================
 // == Reset Form ==============================================
 function resetForm() {
     location.reload();
@@ -107,3 +147,4 @@ api.resetForm((args) => {
     resetForm();
 });
 // == Fim Reset Form ==========================================
+//=============================================================
