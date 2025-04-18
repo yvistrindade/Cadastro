@@ -1,7 +1,7 @@
 {
-  "name": "cadastro",
+  "name": "cadcli",
   "version": "1.0.0",
-  "description": "Simulação de um sistema de cadastro de clientes",
+  "description": "Desenvolvimento de um sistema desktop para cadastro de clientes.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -9,18 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yvistrindade/cadastro.git"
+    "url": "git+https://github.com/yvistrindade/Cadastro.git"
   },
-  "author": "Claudio Silva",
+  "author": "Yvis tirndade",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yvistrindade/cadastro/issues"
+    "url": "https://github.com/yvistrindade/Cadastro#issues"
   },
-  "homepage": "https://github.com/yvistrindade/cadastro#readme",
+  "homepage": "https://github.com/yvistrindade/Cadastro#readme",
   "devDependencies": {
-    "electron": "^35.0.0"
+    "electron": "^34.2.0"
   },
   "dependencies": {
-    "mongoose": "^8.12.1"
+    "jspdf": "^3.0.1",
+    "mongoose": "^8.12.2"
   }
 }
