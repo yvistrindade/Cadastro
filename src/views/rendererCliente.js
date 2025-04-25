@@ -72,6 +72,7 @@ frmClient.addEventListener('submit', async (event) => {
         cityCli: cityClient.value,
         ufCli: ufClient.value
     }
+    restaurarEnter()
     // Enviar ao main o objeto client - (Passo 2: fluxo)
     // uso do preload.js
     api.newClient(client)
@@ -85,16 +86,22 @@ frmClient.addEventListener('submit', async (event) => {
 // == CRUD Read ===============================================
 
 // setar o nome do cliente para fazer um novo cadastro se a busca retornar que o cliente não está cadastrado.
-api.setName((args) => {
-    console.log("teste do IPC 'set-name'")
-    // "recortar" o nome da busca e setar no campo nome do form
-    let busca = document.getElementById('searchClient').value
-    // limpar o campo de busca (foco foi capturado de forma global)
-    foco.value=""
-    // foco no campo nome
-    nameClient.focus()    
-    // copiar o nome do cliente para o campo nome
-    nameClient.value = busca
+api.setSearch((event, searchValue) => {
+    foco.value = ""
+    const cleanValue = searchValue.replace(/[^\w]/g, '') // remove pontuação mas mantém letras
+
+    // Verifica se parece com um CPF (tem pelo menos 9 caracteres e começa com número)
+    const pareceCPF = /^\d{3,}[\w]*$/.test(cleanValue)
+
+    if (pareceCPF) {
+        cpfClient.value = cleanValue
+        cpfClient.focus()
+        // cpfClient.style.border = '2px solid red'
+    } else {
+        nameClient.value = searchValue
+        nameClient.focus()
+    }
+    restaurarEnter()
 })
 
 function searchName() {
@@ -104,6 +111,7 @@ function searchName() {
     console.log(cliName) // teste do passo 1
     // validação de campo obrigatório
     // se o campo de busca não foi preenchido
+
     if (cliName === "") {
         // enviar ao main um pedido para alertar o usuário
         // precisa usar o preload.js
@@ -151,3 +159,35 @@ api.resetForm((args) => {
 })
 // == Fim Reset Form ==========================================
 // ============================================================
+
+window.api.setCPF((event, cpf) => {
+    const cpfField = document.querySelector('#cpf')
+    cpfField.value = cpf
+    cpfField.focus()
+    cpfField.style.border = '2px solid red'
+})
+
+// ============================================================
+// == Manipulação do Enter ====================================
+
+function teclaEnter(event) {
+    if (event.key === "Enter") {
+        event.preventDefault() // ignorar o comportamento padrão
+        // executar um método de busca do cliente
+        searchName()
+    }
+}
+
+// "Escuta" do teclado ('keydown' = pressionar tecla) 
+frmClient.addEventListener('keydown', teclaEnter)
+
+// Função para restaurar o padrão (tecla enter)
+function restaurarEnter() {
+    frmClient.removeEventListener('keydown', teclaEnter)
+}
+
+// == Fim-  Manipulação do Enter===============================
+// ============================================================
+
+// ============================================================
+// == Manipulação do Enter ====================================
